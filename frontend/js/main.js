@@ -257,7 +257,7 @@ function downloadLicenseCard() {
 
 async function getBarCodeData(employeeId) {
     try {
-        const response = await fetch(`http://127.0.0.1:5000/api/license/documents/${employeeId}`);
+        const response = await fetch(`http://localhost:5000/api/license/documents/${employeeId}`);
 
         // Check if the response status is OK (status code 200)
         if (!response.ok) {
@@ -287,7 +287,7 @@ async function saveData() {
         expiryDate
     };
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/license/create', {
+        const response = await fetch('http://localhost:5000/api/license/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -309,7 +309,7 @@ async function saveData() {
 
 async function fetchDashboardData() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/license/dashboard');
+        const response = await fetch('http://localhost:5000/api/license/dashboard');
 
         // Check if the response status is OK (status code 200)
         if (!response.ok) {
