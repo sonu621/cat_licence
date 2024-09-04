@@ -1,6 +1,6 @@
 async function fetchDashboardData() {
     try {
-        const response = await fetch('http://localhost:5000/api/license/dashboard');
+        const response = await fetch('https://cat-licence-6.onrender.com/api/license/dashboard');
 
         // Check if the response status is OK (status code 200)
         if (!response.ok) {
