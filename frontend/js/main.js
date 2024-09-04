@@ -1,136 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const form = document.getElementById('licenseForm');
-
-//     form.addEventListener('submit', async (e) => {
-//         e.preventDefault();
-
-//         const formData = new FormData(form);
-//         const data = {
-//             name: formData.get('name'),
-//             employeeId: formData.get('employeeId'),
-//             position: formData.get('position'),
-//             issueDate: formData.get('issueDate'),
-//             expiryDate: formData.get('expiryDate')
-//         };
-
-//         // Generate the card preview
-//         generateCardPreview(data);
-
-//         try {
-//             const response = await fetch('http://127.0.0.1:5000/api/license/create', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify(data)
-//             });
-
-//             const result = await response.json();
-
-//             if (response.status === 201) {
-//                 alert('License created successfully!');
-//                 updateDashboard();
-//             } else {
-//                 alert(result.message || 'An error occurred');
-//             }
-//         } catch (error) {
-//             console.error('Error creating license:', error);
-//         }
-//     });
-
-//     document.getElementById('downloadCard').addEventListener('click', () => {
-//         downloadLicenseCard();
-//     });
-
-//     async function updateDashboard() {
-//         try {
-//             const response = await fetch('http://127.0.0.1:5000/api/license/dashboard');
-//             const data = await response.json();
-
-//             document.getElementById('totalIssued').innerText = data.totalIssued;
-//             document.getElementById('pending').innerText = data.pending;
-//             document.getElementById('expired').innerText = data.expired;
-//         } catch (error) {
-//             console.error('Error fetching dashboard data:', error);
-//         }
-//     }
-
-//     // Generate Card Preview
-//     function generateCardPreview(data) {
-//         const cardPreview = document.getElementById('card-preview');
-//         cardPreview.innerHTML = `
-//             <p>C.A.T INTERNAL DRIVING LICENSE</p>
-//             <p>Employee Name: ${data.name}</p>
-//             <p>Employee ID: ${data.employeeId}</p>
-//             <p>Position: ${data.position}</p>
-//             <p>Issue Date: ${data.issueDate}</p>
-//             <p>Expiry Date: ${data.expiryDate}</p>
-//             <p>C.A.T INTERNATIONAL L.L.C</p>
-//             <p>THIS IS NOT A SAUDI ARABIAN GOVERNMENT LICENSE</p>
-//         `;
-//     }
-
-//     // Download License Card
-//     function downloadLicenseCard() {
-//         const { jsPDF } = window.jspdf;
-//         const doc = new jsPDF({
-//             orientation: "landscape",
-//             unit: "mm",
-//             format: [85.6, 53.98] // Standard credit card size
-//         });
-
-//         const preview = document.getElementById('card-preview');
-//         const pTags = preview.querySelectorAll('p');
-
-//         const name = pTags[1].innerText.split(": ")[1];
-//         const employeeId = pTags[2].innerText.split(": ")[1];
-//         const position = pTags[3].innerText.split(": ")[1];
-//         const issueDate = pTags[4].innerText.split(": ")[1];
-//         const expiryDate = pTags[5].innerText.split(": ")[1];
-
-//         // Card layout
-//         doc.setFontSize(12);
-//         doc.text("C.A.T INTERNAL DRIVING LICENSE", 10, 10);
-
-//         doc.setFontSize(10);
-//         doc.text(`Employee Name: ${name}`, 10, 20);
-//         doc.text(`Employee ID: ${employeeId}`, 10, 25);
-//         doc.text(`Position: ${position}`, 10, 30);
-//         doc.text(`Issue Date: ${issueDate}`, 10, 35);
-//         doc.text(`Expiry Date: ${expiryDate}`, 10, 40);
-
-//         // Add footer content
-//         doc.setFontSize(8);
-//         doc.text("C.A.T INTERNATIONAL L.L.C", 10, 48);
-//         doc.text("THIS IS NOT A SAUDI ARABIAN GOVERNMENT LICENSE", 10, 50);
-
-//         // Add image
-//         const img = new Image();
-//         img.src = "./images/logo.png"; // Use the locally hosted image
-
-//         img.onload = () => {
-//             // Adjust the size and position of the image
-//             const imgWidth = 25;  
-//             const imgHeight = 25; 
-//             const imgXPosition = 60; 
-//             const imgYPosition = 15; 
-
-//             doc.addImage(img, 'PNG', imgXPosition, imgYPosition, imgWidth, imgHeight);
-
-//             // Download the PDF after the image is loaded
-//             doc.save('driving_license_card.pdf');
-//         };
-
-//         img.onerror = () => {
-//             console.error('Image failed to load.');
-//             alert('Error loading logo image. Please try again.');
-//         };
-//     }
-
-//     // Initialize the dashboard data
-//     updateDashboard();
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
     const createLicenseBtn = document.getElementById('licenseForm');
     if (createLicenseBtn) {
@@ -229,22 +96,6 @@ function downloadLicenseCard() {
     const barcodeYPosition = 35;
 
     doc.addImage(barcodeSrc, 'PNG', barcodeXPosition, barcodeYPosition, barcodeWidth, barcodeHeight);
-
-    // Load and add logo image
-    // const logoImg = new Image();
-    // logoImg.src = "https://www.catgroup.net/wp-content/uploads/2022/09/Group-53-e1666969625763.png";
-
-    // logoImg.onload = () => {
-    //     const logoWidth = 25;
-    //     const logoHeight = 25;
-    //     const logoXPosition = 60;
-    //     const logoYPosition = 15;
-
-    //     doc.addImage(logoImg, 'PNG', logoXPosition, logoYPosition, logoWidth, logoHeight);
-
-    //     // Save the PDF
-    //     doc.save('driving_license_card.pdf');
-    // };
     doc.save('driving_license_card.pdf');
 
     logoImg.onerror = () => {
@@ -257,7 +108,7 @@ function downloadLicenseCard() {
 
 async function getBarCodeData(employeeId) {
     try {
-        const response = await fetch(`http://localhost:5000/api/license/documents/${employeeId}`);
+        const response = await fetch(`https://cat-licence-6.onrender.com/api/license/documents/${employeeId}`);
 
         // Check if the response status is OK (status code 200)
         if (!response.ok) {
@@ -287,7 +138,7 @@ async function saveData() {
         expiryDate
     };
     try {
-        const response = await fetch('http://localhost:5000/api/license/create', {
+        const response = await fetch('https://cat-licence-6.onrender.com/api/license/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -309,7 +160,7 @@ async function saveData() {
 
 async function fetchDashboardData() {
     try {
-        const response = await fetch('http://localhost:5000/api/license/dashboard');
+        const response = await fetch('https://cat-licence-6.onrender.com/api/license/dashboard');
 
         // Check if the response status is OK (status code 200)
         if (!response.ok) {
