@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Driving License App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div id="app" class="container-fluid">
+        <header class="text-center mb-5" id="header-section">
+            <img src="https://www.catgroup.net/wp-content/uploads/2022/09/Group-53-e1666969625763.png" alt="CAT Logo"
+                class="logo">
+            <h1>Driving License Issuance</h1>
+            <p class="lead">Easily create internal driving licenses for employees.</p>
+        </header>
+
+        <!-- License Form Section -->
+        <section id="form-section">
+            <h2>Issue a New License</h2>
+            <form id="licenseForm">
+                <div class="form-group">
+                    <label for="name">Employee Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="employeeId">Employee ID:</label>
+                    <input type="text" id="employeeId" name="employeeId" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" name="position" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="issueDate">Issue Date:</label>
+                    <input type="date" id="issueDate" name="issueDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="date" id="expiryDate" name="expiryDate" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create License</button>
+            </form>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="mt-5">
+            <h2>Dashboard Overview</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="dashboard-item p-3 mb-3">
+                        <i class="fas fa-id-card fa-3x"></i>
+                        <p>Total Cards Issued</p>
+                        <strong id="totalIssued">0</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-item p-3 mb-3">
+                        <i class="fas fa-clock fa-3x"></i>
+                        <p>Pending Cards</p>
+                        <strong id="pending">0</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-item p-3 mb-3">
+                        <i class="fas fa-exclamation-triangle fa-3x"></i>
+                        <p>Expired Cards</p>
+                        <strong id="expired">0</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card Preview Section -->
+        <section id="card-preview-section" class="mt-5 container">
+            <h2>Generated License Card</h2>
+            <div id="card-preview" class="card-preview" style="display: none;">
+                <div class="card-header">
+                    <h3>C.A.T INTERNAL DRIVING LICENSE</h3>
+                </div>
+                <div class="card-body">
+                    <p id="employeeName"></p>
+                    <p id="position"></p>
+                    <p id="issueDate"></p>
+                    <p id="expiryDate"></p>
+                    <!-- Barcode Container -->
+                    <div id="barcodeContainer" class="text-center mt-3">
+                        <img id="barcode" src="" alt="Barcode">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p>C.A.T INTERNATIONAL L.L.C</p>
+                    <p>THIS IS NOT A SAUDI ARABIAN GOVERNMENT LICENSE</p>
+                </div>
+                <div class="card-logo">
+                    <img src="https://www.catgroup.net/wp-content/uploads/2022/09/Group-53-e1666969625763.png"
+                        alt="CAT Logo">
+                </div>
+            </div>
+            <button id="downloadCard" class="btn btn-success mt-3">Download Card</button>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="mt-5">
+            <h2>About Us</h2>
+            <p>We specialize in providing internal driving licenses to ensure safety and compliance within the company.
+                Our mission is to make the process of license issuance smooth, efficient, and user-friendly. With years
+                of experience, we’ve helped companies streamline their internal license management.</p>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="mt-5">
+            <h2>Testimonials</h2>
+            <div class="testimonial-item">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"This platform made the process of issuing licenses incredibly easy. It's efficient
+                        and user-friendly."</p>
+                    <footer class="blockquote-footer">John Doe, <cite title="Company">C.A.T INTERNATIONAL L.L.C</cite>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="testimonial-item">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"We have streamlined our internal driving license management, thanks to this app.
+                        It's a real time-saver!"</p>
+                    <footer class="blockquote-footer">Jane Smith, <cite title="Company">Transport Solutions Co.</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="mt-5 mb-5">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h4>What is the purpose of this app?</h4>
+                <p>This app helps companies issue internal driving licenses for their employees, ensuring compliance
+                    with company policies and safety standards.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How do I create a license?</h4>
+                <p>Simply fill out the form with the employee's details, and click "Create License." The app will handle
+                    the rest.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Include Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
